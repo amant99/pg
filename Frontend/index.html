@@ -1,0 +1,201 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@metamask/detect-provider@1.2.0/dist/detect-provider.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyNFT App</title>
+  <style>
+    /* Add your custom styles here for a beautiful and interactive UI */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      color: #333;
+    }
+
+    /* Additional styling for a better look and feel */
+    header h1 {
+      margin: 0;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group label {
+      width: 30%;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>MyNFT App</h1>
+  </header>
+  <main>
+
+    <!-- <button id="connectButton">Connect to MetaMask</button> -->
+  <div id="accountInfo">
+    <p>Connected Account: <span id="account"></span></p>
+    <p>Balance: <span id="balance"></span> ETH</p>
+  </div>
+
+    <!-- Create a form to input user details and call contract functions -->
+    <h2>Create User</h2>
+    <form id="createUserForm">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name">
+      </div>
+      <div class="input-group">
+        <label for="aadhar">Aadhar:</label>
+        <input type="text" id="aadhar" placeholder="Enter Aadhar number">
+      </div>
+      <div class="input-group">
+        <label for="userWallet">User Wallet Address:</label>
+        <input type="text" id="userWallet" placeholder="Enter user's wallet address">
+      </div>
+      <button type="submit">Create User</button>
+    </form>
+
+    <!-- Display all users -->
+    <h2>All Users</h2>
+    <div id="usersList"></div>
+
+    <!-- Mint NFT -->
+    <h2>Mint NFT</h2>
+    <form id="mintNFTForm">
+      <div class="input-group">
+        <label for="recipient">Recipient Address:</label>
+        <input type="text" id="recipient" placeholder="Enter recipient address">
+      </div>
+      <div class="input-group">
+        <label for="tokenId">Token ID:</label>
+        <input type="number" id="tokenId" placeholder="Enter token ID">
+      </div>
+      <button type="submit">Mint NFT</button>
+    </form>
+
+    <!-- Transfer NFT -->
+    <h2>Transfer NFT</h2>
+    <form id="transferNFTForm">
+      <div class="input-group">
+        <label for="from">From Address:</label>
+        <input type="text" id="from" placeholder="Enter sender address">
+      </div>
+      <div class="input-group">
+        <label for="to">To Address:</label>
+        <input type="text" id="to" placeholder="Enter recipient address">
+      </div>
+      <div class="input-group">
+        <label for="tokenId">Token ID:</label>
+        <input type="text" id="tokenId1" placeholder="Enter token ID">
+      </div>
+      <button type="submit">Transfer NFT</button>
+    </form>
+    <!-- Delete User Form -->
+<h2>Delete User</h2>  
+<form id="deleteUserForm">
+  <div class="input-group">
+    <label for="deleteUserWallet">User Wallet Address:</label>
+    <input type="text" id="deleteUserWallet" placeholder="Enter user's wallet address">
+  </div>
+  <button type="submit">Delete User</button>
+</form>
+
+<!-- Get NFT Owner Name Form -->
+<h2>Get NFT Owner Name</h2>
+<form id="getOwnerNameForm">
+  <div class="input-group">
+    <label for="tokenIdGetOwner">Token ID:</label>
+    <input type="number" id="tokenIdGetOwner" placeholder="Enter token ID">
+  </div>
+  <button type="submit">Get Owner Name</button>
+</form>
+
+<!-- Register Land Form -->
+<h2>Register Land</h2>
+<form id="registerLandForm">
+  <button type="submit">Register Land</button>
+</form>
+
+
+<h1>Ethereum Address Converter</h1>
+  <form id="addressForm">
+    <label for="addressInput">Enter Ethereum Address:</label>
+    <input type="text" id="addressInput" required>
+    <button type="submit">Convert to Lowercase</button>
+  </form>
+
+  <script>
+    document.getElementById("addressForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const addressInput = document.getElementById("addressInput").value;
+      const lowercaseAddress = addressInput.toLowerCase();
+      console.log("Original Address:", addressInput);
+      console.log("Lowercase Address:", lowercaseAddress);
+    });
+  </script>
+  </main>
+  <script src="https://cdn.ethers.io/lib/ethers-5.4.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
